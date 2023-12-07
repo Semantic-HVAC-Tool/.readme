@@ -31,7 +31,54 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
 
 
 ## Setup and Installation
+### Capacity Service
+- **Prerequisites**: Python 3.8
+- **Installation**:
+  1. Clone the repository: `git clone https://github.com/Semantic-HVAC-Tool/Capacity-Service.git`
+  2. Navigate to the directory: `cd Capacity-Service`
+  3. Create and activate the virtual environment:
+     - Windows: `python38 -m venv venv` and `venv\Scripts\activate`
+     - Linux/Mac: `python3.8 -m venv venv` and `source venv/bin/activate`
+  4. Install requirements: `pip install -r requirements.txt`
+  5. Start the service: `uvicorn server:app --reload`
 
+### Rule Service
+- **Prerequisites**: Python 3.8
+- **Installation**:
+  1. Clone and navigate to the repository: `git clone https://github.com/Semantic-HVAC-Tool/Rule-Service.git` and `cd Rule-Service`
+  2. Activate the virtual environment (as above).
+  3. Start the service: `uvicorn server:app --port 8080 --reload`
+
+### Orchestrator Service
+- **Prerequisites**: Python 3.8, Node.js, Visual Studio Build Tools
+- **Installation**:
+  1. Clone the repository: `git clone https://github.com/Semantic-HVAC-Tool/Orchestrator-Service.git`
+  2. Set up environment: `export PATH="/c/users/username/appData/local/programs/python/Python38:$PATH"`
+  3. Install dependencies: `npm install`
+  4. Start the service: `npm start`
+
+### Apache Jena Fuseki Database
+- **Prerequisites**: Java 8, Apache Jena Fuseki
+- **Installation**:
+  1. Download and configure Apache Jena Fuseki.
+  2. Update `ny-db.ttl` configuration file.
+  3. Start the server: `fuseki-server.bat`
+  4. Access the database at `localhost:3030`.
+
+### Data Conversion and Database Integration
+- **Option 1**: Revit to Fuseki
+  - **Prerequisites**: Revit 2021, Visual Studio 2019
+  - Follow the steps for converting BIM data using the provided parser.
+- **Option 2**: Use pre-converted RDF BIM data
+  - Clone the repository and use the `postDataToTriplestore.py` script to store data in the database.
+
+### Frontend Setup
+- **Prerequisites**: Node.js
+- **Installation**:
+  1. Clone the repository: `git clone https://github.com/Semantic-HVAC-Tool/Client.git`
+  2. Navigate and install dependencies: `cd client` and `npm install`
+  3. Start the application: `npm start`
+  4. Access the UI at `localhost:3000/validationOverviewTable`.
 ## Settting up the capacity service
 Prescrusites
 - python 3.8
