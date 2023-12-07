@@ -1,8 +1,36 @@
-# .readme COMING SOON
+# Semantic HVAC Tool Documentation (Will be ready by Sunday, 10th of December)
+The Semantic HVAC Tool is a microservice-oriented web application, designed at the Technical University of Denmark's Department of Mechanical Engineering to perform compliance checking using Semantic Web technologies. It features a four-layer architecture consisting of 5 services. 
 
-Flowwing this guide, you should be able to run the setup
-The organisation consists of modules 1,2,3,4,5... 
-The order we will install is ....
+## Core Components and Their Functions
+
+### Presentation Layer
+This layer employs a Graphical User Interface (GUI), developed using React, to offer an intuitive experience. Users can initiate tasks like conformance checking, hydraulic calculations, and view detailed results of these operations.
+
+### Communication Layer
+Acting as the nervous system of the application, this layer facilitates seamless communication between various services. It uses an orchestrator, developed with ExpressJS and NodeJS, to manage interactions between the presentation, business, and database layers.
+
+### Business Layer
+This is where the application's intelligence resides. Divided into multiple microservices like the Capacity Service and Rule Service, it handles the core logic for HVAC design and rule compliance. These services are built using FastAPI and are responsible for essential tasks such as hydraulic calculations and conformance checks.
+
+### Database Layer
+Underpinning the application, this layer uses a Jena Fuseki server to manage RDF data efficiently. It provides a robust foundation for storing and retrieving HVAC data, ensuring data integrity and facilitating advanced queries.
+
+### Services Overview
+
+#### Capacity Service
+Handles hydraulic calculations and pressure drop analyses for various HVAC components.
+
+#### Rule Service
+Ensures compliance with HVAC design rules and standards, providing validation reports and conformance checks.
+
+#### Orchestrator Service
+Coordinates the workflow between different services, ensuring smooth data flow and task execution.
+
+#### Apache Jena Fuseki Database
+Central repository for storing and managing HVAC system data, supporting complex queries for data retrieval and manipulation.
+
+
+## Setup and Installation
 
 ## Settting up the capacity service
 Prescrusites
