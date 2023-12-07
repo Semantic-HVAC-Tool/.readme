@@ -86,7 +86,11 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
 - **Requirements**: Database running on port 3030 (named ny-db) and the Data-model.ttl in the same folder.
 - **Steps**:
   1. Clone the repository containing the `postDataToTriplestore.py` script ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/postDataToTriplestore.py)).
-  2. Execute the script to upload data to the database, ensuring the database is correctly configured.
+  2.  Create and activate the virtual environment:
+     - Windows: `python38 -m venv venv` and `venv\Scripts\activate`
+     - Linux/Mac: `python3.8 -m venv venv` and `source venv/bin/activate`
+  3. Install requirements: `pip install requests`
+  4. Execute the script to upload data to the database, ensuring the database is correctly configured.
 
 
 ### Frontend Setup
