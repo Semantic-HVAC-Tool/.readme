@@ -45,32 +45,64 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
 ### Rule Service
 - **Prerequisites**: Python 3.8
 - **Installation**:
-  1. Clone and navigate to the repository: `git clone https://github.com/Semantic-HVAC-Tool/Rule-Service.git` and `cd Rule-Service`
-  2. Activate the virtual environment (as above).
-  3. Start the service: `uvicorn server:app --port 8080 --reload`
+  1. Clone the repository: `git clone https://github.com/Semantic-HVAC-Tool/Rule-Service.git`
+  2. Navigate to the directory `cd Rule-Service`
+  3. Create and activate the virtual environment:
+     - Windows: `python38 -m venv venv` and `venv\Scripts\activate`
+     - Linux/Mac: `python3.8 -m venv venv` and `source venv/bin/activate`
+  4. Start the service: `uvicorn server:app --port 8080 --reload`
 
 ### Orchestrator Service
-- **Prerequisites**: Python 3.8, Node.js, Visual Studio Build Tools
+- **Prerequisites**: Node.js, Visual Studio Build Tools, Nodemon
 - **Installation**:
   1. Clone the repository: `git clone https://github.com/Semantic-HVAC-Tool/Orchestrator-Service.git`
   2. Set up environment: `export PATH="/c/users/username/appData/local/programs/python/Python38:$PATH"`
   3. Install dependencies: `npm install`
-  4. Start the service: `npm start`
+  4. Start the service: `npm run dev`
 
 ### Apache Jena Fuseki Database
-- **Prerequisites**: Java 8, Apache Jena Fuseki
+- **Prerequisites**: Java 8, Apache Jena Fuseki (version 4.2.0)
 - **Installation**:
   1. Download and configure Apache Jena Fuseki.
-  2. Update `ny-db.ttl` configuration file.
-  3. Start the server: `fuseki-server.bat`
-  4. Access the database at `localhost:3030`.
+  2. Obtain the configuration file `ny-db.ttl` from [this GitHub repository](https://github.com/Semantic-HVAC-Tool/Other/blob/main/ny-db.ttl).
+  3. Add the `ny-db.ttl` file to the configuration directory: `yourPath\apache-jena-fuseki-4.2.0\run\configuration`.
+  4. Update the `tdb2:location` path in the `ny-db.ttl` file with your specific path. 
+  5. Run the `fuseki-server.bat` file to start the server.
+  6. Open your web browser and navigate to [localhost:3030](http://localhost:3030/#/) to access the database interface.
+
+
+### Data Conversion and Database Integration
+
+#### Option 1: Revit to Fuseki
+- **Prerequisites**: Revit 2021, Visual Studio 2019
+- **Requirements**: Orchestrator and Database services must be running.
+- **Steps**:
+  1. Set up the development environment in Visual Studio 2019.
+  2. Create a Revit plugin using the [My First Revit Plug-in tutorial](https://www.autodesk.com/support/technical/article/caas/tsarticles/ts/7I2bC1zUr4VjJ3U31uM66K.html).
+  3. Open the BIM model (available [here](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt)).
+  4. Run the plugin to convert BIM data using the parser, with Orchestrator and Database services active.
+
+#### Option 2: Use pre-converted RDF BIM data
+- **Requirements**: Database running on port 3030 (named ny-db) and the Data-model.ttl in the same folder.
+- **Steps**:
+  1. Clone the repository containing the `postDataToTriplestore.py` script ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/postDataToTriplestore.py)).
+  2. Execute the script to upload data to the database, ensuring the database is correctly configured.
+
 
 ### Data Conversion and Database Integration
 - **Option 1**: Revit to Fuseki
-  - **Prerequisites**: Revit 2021, Visual Studio 2019
-  - Follow the steps for converting BIM data using the provided parser.
+- **Prerequisites**: Revit 2021, Visual Studio 2019
+- **Requirements**: Orchestrator and Database services must be running.
+- **Steps**:
+  1. Set up the development environment in Visual Studio 2019.
+  2. Create a Revit plugin using the [My First Revit Plug-in tutorial](https://www.autodesk.com/support/technical/article/caas/tsarticles/ts/7I2bC1zUr4VjJ3U31uM66K.html).
+  3. Open the BIM model (available [here](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt)).
+  4. Run the plugin to convert BIM data using the parser, with Orchestrator and Database services active.
 - **Option 2**: Use pre-converted RDF BIM data
-  - Clone the repository and use the `postDataToTriplestore.py` script to store data in the database.
+- **Requirements**: Database running on port 3030 (named ny-db) and the Data-model.ttl in the same folder.
+- **Steps**:
+  1. Clone the repository containing the `postDataToTriplestore.py` script ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/postDataToTriplestore.py)).
+  2. Execute the script to upload data to the database.
 
 ### Frontend Setup
 - **Prerequisites**: Node.js
@@ -79,6 +111,8 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
   2. Navigate and install dependencies: `cd client` and `npm install`
   3. Start the application: `npm start`
   4. Access the UI at `localhost:3000/validationOverviewTable`.
+
+
 ## Settting up the capacity service
 Prescrusites
 - python 3.8
