@@ -17,17 +17,17 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
 
 ### Services Overview
 
-#### Capacity Service
-Handles hydraulic calculations and pressure drop analyses for various HVAC components.
+- **Capacity Service**: 
+  - Handles hydraulic calculations and pressure drop analyses for various HVAC components.
 
-#### Rule Service
-Ensures compliance with HVAC design rules and standards, providing validation reports and conformance checks.
+- **Rule Service**: 
+  - Ensures compliance with HVAC design rules and standards, providing validation reports and conformance checks.
 
-#### Orchestrator Service
-Coordinates the workflow between different services, ensuring smooth data flow and task execution.
+- **Orchestrator Service**: 
+  - Coordinates the workflow between different services, ensuring smooth data flow and task execution.
 
-#### Apache Jena Fuseki Database
-Central repository for storing and managing HVAC system data, supporting complex queries for data retrieval and manipulation.
+- **Apache Jena Fuseki Database**: 
+  - Serves as the central repository for storing and managing HVAC system data, supporting complex queries for data retrieval and manipulation.
 
 
 ## Setup and Installation
