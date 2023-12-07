@@ -89,21 +89,6 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
   2. Execute the script to upload data to the database, ensuring the database is correctly configured.
 
 
-### Data Conversion and Database Integration
-- **Option 1**: Revit to Fuseki
-- **Prerequisites**: Revit 2021, Visual Studio 2019
-- **Requirements**: Orchestrator and Database services must be running.
-- **Steps**:
-  1. Set up the development environment in Visual Studio 2019.
-  2. Create a Revit plugin using the [My First Revit Plug-in tutorial](https://www.autodesk.com/support/technical/article/caas/tsarticles/ts/7I2bC1zUr4VjJ3U31uM66K.html).
-  3. Open the BIM model (available [here](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt)).
-  4. Run the plugin to convert BIM data using the parser, with Orchestrator and Database services active.
-- **Option 2**: Use pre-converted RDF BIM data
-- **Requirements**: Database running on port 3030 (named ny-db) and the Data-model.ttl in the same folder.
-- **Steps**:
-  1. Clone the repository containing the `postDataToTriplestore.py` script ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/postDataToTriplestore.py)).
-  2. Execute the script to upload data to the database.
-
 ### Frontend Setup
 - **Prerequisites**: Node.js
 - **Installation**:
