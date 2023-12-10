@@ -118,6 +118,9 @@ Billedet herunder, viser hele BIM modellen inklusiv bygningen (gjort lidt transp
 For at tjekke om alt dataen er overført korrekt, til triplestoren kan vi gå til [localhost:3030](http://localhost:3030/dataset.html?tab=query&ds=/ny-db), og se at vi har fået overført 369044 triples. 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture2.PNG)
 
+I og med alle triples er overført kan vi udfører første valideringstjek ved at gå til http://localhost:3000/validationOverviewTable. Det skal siges at UI'en på siden er holdt super simpelt. Der er ikke brugt meget tid på at gøre UI'en flot, derfor er den holdt super simpelt blot for at vise de mest nødvendige funktioner. Netop at vi kan udfører en valideringstjek, få et overblik over violations, køre en hydraulisk beregning, køre en anden valideringstjek og dernæst designe kapaciteten på alle flow moving devices. Af den grund, når man lander på siden, ser man følgende:
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture3.PNG)
 
 Once all services are running, we can open the real BIM-Model.rvt stored on https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt. 
 At the top of the UI there is a Ribbon. Click on RDF, then click on BOT. Doing so, 
