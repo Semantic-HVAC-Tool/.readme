@@ -1,6 +1,7 @@
 # Semantic HVAC Tool Documentation (Will be ready by Sunday, 10th of December)
 The Semantic HVAC Tool is a microservice-oriented web application, designed at the Technical University of Denmark's Department of Mechanical Engineering to perform compliance checking using Semantic Web technologies. It features a four-layer architecture consisting of 5 services. 
 
+
 ## Core Components and Their Functions
 
 ### Presentation Layer
@@ -105,6 +106,19 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
 
 ## Userflow of the Semantic Web Tool on test building model
 
-## Userflow of the Semantic Web Tool on a Real-world building model 
 
+## Userflow of the Semantic Web Tool on a real-world building model 
+Når alle servicene kører, så er det første vi gør at parse BIM data til en triplestore (Apache Jena Fuseki) vha. FSO, FPO og BOT. 
+Det gør vi ved at downloade BIM modellen fra https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt og åbne den i Revit. 
+I toppen af UI'en er der en Ribbon. I denne er der en tab der hedder RDF og i denne tab er der en tool der hedder BOT. Ved at klikke på BOT eksvereres parseren og vi får parset FSO, FPO og BOT instancer over til databasen. 
+Billedet herunder, viser hele BIM modellen inklusiv bygningen (gjort lidt transperant for at kunne se HVAC objekterne tydeligere) og alle HVAC komponenterne. Det ses tydeligt hvor kompleks en HVAC model kan se ud for en bygning. 
+![Alt text]([path/to/your/image.png](https://github.com/Semantic-HVAC-Tool/.readme/blob/main/Real_World_Building_Model_pictures/picture1.png))
+
+
+
+
+For at tjekke om alt dataen er overført korrekt, til triplestoren kan vi gå til localhost:3030
+
+Once all services are running, we can open the real BIM-Model.rvt stored on https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt. 
+At the top of the UI there is a Ribbon. Click on RDF, then click on BOT. Doing so, 
 
