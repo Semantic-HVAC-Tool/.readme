@@ -182,9 +182,9 @@ Efter 1.5 min, fås følgende tabel der viser kapaciteten for hver flow moving d
 
  
 ## Userflow of the Semantic Web Tool on a conceptual building model
-Det following video ...
+Click to download and watch the following video
 
-[![Watch the video](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Conceptual_Building_Model_video/conceptualmodel.PNG)](https://github.com/Semantic-HVAC-Tool/.readme/blob/main/Conceptual_Building_Model_video/validatorvideo1.mp4)
+[![Watch the video](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Conceptual_Building_Model_video/conceptualmodel.PNG)](https://github.com/Semantic-HVAC-Tool/.readme/raw/main/Conceptual_Building_Model_video/validatorvideo1.mp4)
 
 
 
