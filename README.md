@@ -1,4 +1,4 @@
-# Semantic HVAC Tool Documentation (Will be ready by Sunday, 10th of December)
+# Semantic HVAC Tool Documentation (Will be ready by Tuesday, 12th of December)
 The Semantic HVAC Tool is a microservice-oriented web application, designed at the Technical University of Denmark's Department of Mechanical Engineering to perform compliance checking using Semantic Web technologies. It features a four-layer architecture consisting of 5 services. 
 
 
@@ -129,5 +129,60 @@ Ved at klikke på Validate eksveres første valideringstjek og får en tabel der
 Vi har nu mulighed for at klikke på rækken Pipe. Når vi gør det føres vi til en ny side, der identificerer hvilke instances der violater og hvorfor de violater. 
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture5.PNG)
+
+Det er så muligt at gå tilbage til BIM modellen i Revit, finde frem til instancerne der violater ud fra deres ID nummer. 
+Slår vi dem op, viser det sig at der er varmerøret frem og retur til bygningen, som er markeret i billede for neden, der står åbent. Idet, vi i en hydraulisk beregning ikke må have åbne ender, i et vandbaseret varmesystem, får vi en vioalation.
+For at kunne korrigerer denne fejl, kan vi tilføje en cap på enden af røret for at forsegle det. Gør vi dette, og køre valideringsmodellen igen, vil antallet af violations i oversigten gå fra 2 til 0. 
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture0.PNG)
+
+Vi kan også klikke på rækken SpaceHeater i oversigtstabellen for at få en detaljeret beskrivelse af hvilke fso:SpaceHeater instancer der violater og hvorfor de violater. Den detaljerede tabel er vist herunder:
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture0.PNG)
+
+Ud fra violation beskrivelsen kan vi konstaterer at de specifikke instancer af typen fso:SpaceHeater ikke har propertien transfers heat to -  med andre ord det servicere ikke et rum. 
+Vi har så mulighed for at gå ind i BIM modellen og lokaliserer disse 3 spaceheaters og korrigerer dem manuelt. Vi kan Åbne BIM modellen og anvende Revit Lookup til slå komponentet op i Revits database.
+Først indtaster vi ID'et af et af komponenterne ind i Revit Lookup, som vist herunder:
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/16.JPG)
+
+Ethvert Revit object har både en UniqueID (den som vi bruger) og ID. De bruges til forskellige formål. Vi skal bruge ID til at lokaliserer komponentets placering i 3D modellen, derfor finder vi denne igennem Revit Lookup, kopierer det og indsætter der i værktøjet Select By ID, som ligger under Ribbon Manage.
+Dette er vist herunder. 
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/17.JPG)
+
+Ved at klikke på show, får vi nedenstående billede. Den blå firkant viser rummets størrelse og placering. Den gule markering som jeg har lavet, viser den specifikke SpaceHeater som violater. Det er tydeligt at SpaceHeateren er placeret lige akkurat udenfor rummet. Det betyder at radiatoren ikke servicerer nogen rum overhovedet. I en hydraulisk beregning er det vigtigt at enhver instance af type fso:SpaceHeater er tilknyttet et rum. Hvis det ikke er det, er det ikke muligt at bestemme pumpens kapacitet, som den er tilknyttet. 
+For at rette op dette, skal vi manuelt rykke rummets ydre grænse, helt frem til vinduet således at spaceheateren er placeret indenfor rummets geometri, som vist herunder.
+Gøre vi dette for alle 3 spaceheater instancer som violater, og køre valideringstjekken påny vil antallet af violations for spaceheater gå fra 3 til 0.
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture14.JPG)
+
+For at i udviklere/læsere kan teste applikationen uden at skulle åbne Revit og korrigerer alle 372 violations manuelt, har bygget en funktion i front enden som hedder Solve All. Ved at klikke på denne eksevereres en række SPARQL queries, der korrigerer alle 372 violations. Disse SPARLQ queries kan findes under https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/ManuallySolvingQueries. Foreksempel bruger vi SPARQL querien "insertMissingConnectionBetweenSpaceheaterAndSpace.ttl" til at linke alle 3 spaceheaters til deres repektive rum. Denne query er hardcoded og kan derfor ikke bruges til at bygningsmodeller til at korrigerer instancer af typen fso:SpaceHeater som ikke servicerer et rum, men kun for dette projekt så i undgår at skulle korrigerer i BIM modellen manuelt. På den anden side, er der visse SPARQL queries der ikke er hardcoded og kan bruges på alle projekter for at korrigerer specikke violations. For eksempel SPARQL querien "deleteSystemsWithoutComponents.ttl", kan bruges på alle projekter. Denne query fjerner instancer af typen fso:System som ikke indeholder nogle HVAC komponenter. 
+
+Hvis vi går tilbage til oversigtsiden og klikker på Solve all violations" under den første tabel, vil vi ekskverer alle SPARQL queries. klikker vi dernæst på knappen validate igen, vi se en tabel med 0 violations som vist herunder. 
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture7.JPG)
+
+Nu hvor vi har gennemført første valideringstjek med 0 violations, kan vi gå til næste step. I næste step vil vi udfører en hydraulisk beregning og dernæst lave en anden valideringstjek. Denne valideringstjek vil fortælle os om vi har nogle instancer af typen fso:Pipe der har et for højt pressre drop - som overstiger 100 Pa/m. 
+Ved at klikke på hydraulisk Calc knappen får vi følgende resultat, som viser at vi har 14 instancer af typen fso:Pipe som violater. 
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture8.PNG)
+
+Ved at klikke på rækken Pipe, redirecter vi til en side der beskriver disse violations i detaljer. Vi kan aflæse hvilke instancer der overskrider en pressure drop på 100 Pa/m.
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture9.PNG)
+
+Hvis vi går tilbage til oversigtssiden har vi mulighed for at klikke på Solve all violations under den anden tabel. Klikker vi på denne og dernæst klikker på Hydraulic Calc igen får vi 0 violations i den anden tabel. Det skyldes at ved at klikke på Solve all violations eksvereres en SPARQL querien "autossize.ttl". Denne query er generisk og kan bruges på alle projekter. Querien finder alle instancer af typen fso:Pipe, som overskrider 100 Pa/m i pressuredrop, opdaterer deres størrelse og sletter deres pressure drop. Hvis vi så klikker på Hydraulic Calc påny, vil vi beregne pressure drop for disse komponenter påny med de nye størrelser. Idet, de nye størrerlser ikke overskriver 100 Pa/m, får vi 0 violations. 
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture10.PNG)
+
+Nu hvor anden tabel også giver 0 violations betyder det at vi er har alle de nødvendige data til at kunne designe kapaciteten for vores flow moving devices. Ved at klikke på design, ekseveres 3 queries "PumpPressureDrop.ttl", "FanPressureDrop.ttl" og "FlowMovingDeviceFlowRate.ttl". Disse kan findes under https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/Queries. Idet beregningen af den samlede pressure drop bereges forskelligt for vandbaserede systemer og luftbaserede systemer, har vi en query for hver - "PumpPressureDrop.ttl" og "FanPressureDrop.ttl". De første 2 queries bestemmer den samlede tryktab, hvorimod den sidste bestemmer den samlede flowrate for hvert flow moving device. 
+Efter 1.5 min, fås følgende tabel der viser kapaciteten for hver flow moving device.
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture11.PNG)
+
+ 
+
+
 
 
