@@ -115,9 +115,9 @@ Billedet herunder, viser hele BIM modellen inklusiv bygningen (gjort lidt transp
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture1.png)
 
 
+For at tjekke om alt dataen er overført korrekt, til triplestoren kan vi gå til [localhost:3030](http://localhost:3030/dataset.html?tab=query&ds=/ny-db), og se at vi har fået overført 369044 triples. 
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture2.PNG)
 
-
-For at tjekke om alt dataen er overført korrekt, til triplestoren kan vi gå til localhost:3030
 
 Once all services are running, we can open the real BIM-Model.rvt stored on https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt. 
 At the top of the UI there is a Ribbon. Click on RDF, then click on BOT. Doing so, 
