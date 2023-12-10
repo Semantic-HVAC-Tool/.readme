@@ -161,7 +161,7 @@ For at i udviklere/læsere kan teste applikationen uden at skulle åbne Revit og
 
 Hvis vi går tilbage til oversigtsiden og klikker på Solve all violations" under den første tabel, vil vi ekskverer alle SPARQL queries. klikker vi dernæst på knappen validate igen, vi se en tabel med 0 violations som vist herunder. 
 
-![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture7.JPG)
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture7.PNG)
 
 Nu hvor vi har gennemført første valideringstjek med 0 violations, kan vi gå til næste step. I næste step vil vi udfører en hydraulisk beregning og dernæst lave en anden valideringstjek. Denne valideringstjek vil fortælle os om vi har nogle instancer af typen fso:Pipe der har et for højt pressre drop - som overstiger 100 Pa/m. 
 Ved at klikke på hydraulisk Calc knappen får vi følgende resultat, som viser at vi har 14 instancer af typen fso:Pipe som violater. 
