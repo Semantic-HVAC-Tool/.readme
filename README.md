@@ -104,7 +104,6 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
   5. Access the UI at `localhost:3000/validationOverviewTable`.
  
 
-## Userflow of the Semantic Web Tool on test building model
 
 
 ## Userflow of the Semantic Web Tool on a real-world building model 
@@ -182,6 +181,12 @@ Efter 1.5 min, fås følgende tabel der viser kapaciteten for hver flow moving d
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture11.PNG)
 
  
+## Userflow of the Semantic Web Tool on a conceptual building model
+Det following video ...
+
+[![Watch the video](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Conceptual_Building_Model_video/conceptualmodel.PNG)](https://github.com/Semantic-HVAC-Tool/.readme/blob/main/Conceptual_Building_Model_video/validatorvideo1.mp4)
+
+
 
 
 
