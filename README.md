@@ -134,11 +134,11 @@ Det er så muligt at gå tilbage til BIM modellen i Revit, finde frem til instan
 Slår vi dem op, viser det sig at der er varmerøret frem og retur til bygningen, som er markeret i billede for neden, der står åbent. Idet, vi i en hydraulisk beregning ikke må have åbne ender, i et vandbaseret varmesystem, får vi en vioalation.
 For at kunne korrigerer denne fejl, kan vi tilføje en cap på enden af røret for at forsegle det. Gør vi dette, og køre valideringsmodellen igen, vil antallet af violations i oversigten gå fra 2 til 0. 
 
-![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture0.PNG)
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture0.png)
 
 Vi kan også klikke på rækken SpaceHeater i oversigtstabellen for at få en detaljeret beskrivelse af hvilke fso:SpaceHeater instancer der violater og hvorfor de violater. Den detaljerede tabel er vist herunder:
 
-![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture0.PNG)
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture12.PNG)
 
 Ud fra violation beskrivelsen kan vi konstaterer at de specifikke instancer af typen fso:SpaceHeater ikke har propertien transfers heat to -  med andre ord det servicere ikke et rum. 
 Vi har så mulighed for at gå ind i BIM modellen og lokaliserer disse 3 spaceheaters og korrigerer dem manuelt. Vi kan Åbne BIM modellen og anvende Revit Lookup til slå komponentet op i Revits database.
