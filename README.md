@@ -122,6 +122,12 @@ I og med alle triples er overført kan vi udfører første valideringstjek ved a
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture3.PNG)
 
-Once all services are running, we can open the real BIM-Model.rvt stored on https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt. 
-At the top of the UI there is a Ribbon. Click on RDF, then click on BOT. Doing so, 
+Ved at klikke på Validate eksveres første valideringstjek og får en tabel der opdeler violations i kategorier. Sammenlagt har vi 372 violations.
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture4.PNG)
+
+Vi har nu mulighed for at klikke på rækken Pipe. Når vi gør det føres vi til en ny side, der identificerer hvilke instances der violater og hvorfor de violater. 
+
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture5.PNG)
+
 
