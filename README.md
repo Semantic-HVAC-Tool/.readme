@@ -112,7 +112,7 @@ Når alle servicene kører, så er det første vi gør at parse BIM data til en 
 Det gør vi ved at downloade BIM modellen fra https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt og åbne den i Revit. 
 I toppen af UI'en er der en Ribbon. I denne er der en tab der hedder RDF og i denne tab er der en tool der hedder BOT. Ved at klikke på BOT eksvereres parseren og vi får parset FSO, FPO og BOT instancer over til databasen. 
 Billedet herunder, viser hele BIM modellen inklusiv bygningen (gjort lidt transperant for at kunne se HVAC objekterne tydeligere) og alle HVAC komponenterne. Det ses tydeligt hvor kompleks en HVAC model kan se ud for en bygning. 
-![Alt text]([path/to/your/image.png](https://github.com/Semantic-HVAC-Tool/.readme/blob/main/Real_World_Building_Model_pictures/picture1.png))
+![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture1.png)
 
 
 
