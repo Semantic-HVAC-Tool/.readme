@@ -103,47 +103,35 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
   4. Troubleshooting: If you encounter the error 0308010C:digital envelope, resolve it by setting an environment variable with git bash: `export NODE_OPTIONS=--openssl-legacy-provider`, then run `npm start` again.
   5. Access the UI at `localhost:3000/validationOverviewTable`.
  
-
-
-
 ## Userflow of the Semantic Web Tool on a real-world building model 
 The initial step in the user flow involves parsing Building Information Modeling (BIM) data into a triplestore using Apache Jena Fuseki, facilitated by FSO, FPO, and BOT ontologies. This process starts by downloading the BIM model from the following GitHub link: [BIM Model](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt), and opening it in Revit. In Revit's UI, there's a Ribbon tab labeled "RDF" containing a tool named "BOT." By clicking on this tool, the parser is executed, transferring FSO, FPO, and BOT instances into the database. The accompanying image illustrates the full BIM model, including the building and HVAC components, made partially transparent for clearer visibility of the HVAC elements. This depiction highlights the complexity of an HVAC model within real-world BIM models.
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture1.png)
 
-
-For at tjekke om alt dataen er overført korrekt, til triplestoren kan vi gå til [localhost:3030](http://localhost:3030/dataset.html?tab=query&ds=/ny-db), og se at vi har fået overført 369044 triples. 
+To verify that all data has been correctly transferred to the triplestore, navigate to [localhost:3030](http://localhost:3030/dataset.html?tab=query&ds=/ny-db). Here, you can check that 369,044 triples have been successfully transferred. 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture2.PNG)
 
-I og med alle triples er overført kan vi udfører første valideringstjek ved at gå til http://localhost:3000/validationOverviewTable. Det skal siges at UI'en på siden er holdt super simpelt. Der er ikke brugt meget tid på at gøre UI'en flot, derfor er den holdt super simpelt blot for at vise de mest nødvendige funktioner. Netop at vi kan udfører en valideringstjek, få et overblik over violations, køre en hydraulisk beregning, køre en anden valideringstjek og dernæst designe kapaciteten på alle flow moving devices. Af den grund, når man lander på siden, ser man følgende:
-
+Once all triples are transferred, users can perform the first validation check at http://localhost:3000/validationOverviewTable. The UI is intentionally minimalistic, focusing on practicality over aesthetics. The UI enables users to efficiently carry out critical functions like validation checks, overviewing violations, conducting hydraulic calculations, and designing the capacity of flow-moving devices utlizing Semantic Web technologies.
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture3.PNG)
 
-Ved at klikke på Validate eksveres første valideringstjek og får en tabel der opdeler violations i kategorier. Sammenlagt har vi 372 violations.
+Clicking "Validate" in the Semantic HVAC Tool initiates the first validation check, producing an overview table that categorizes violations into HVAC component types. This table not only provides a total count of 372 violations but also details how many violations each specific HVAC component type has committed. This structured categorization is important to pinpoint areas within the BIM model that need attention.
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture4.PNG)
 
-Vi har nu mulighed for at klikke på rækken Pipe. Når vi gør det føres vi til en ny side, der identificerer hvilke instances der violater og hvorfor de violater. 
+Now, we have the option to click on the "Pipe" row in the first table . This action redirects to a new page, which specifically identifies which instances have violatioted and the reasons behind these violations. This detailed breakdown facilitates a deeper understanding of the violations associated with the fso:Pipe components, allowing for targeted and effective resolutions.
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture5.PNG)
 
-Det er så muligt at gå tilbage til BIM modellen i Revit, finde frem til instancerne der violater ud fra deres ID nummer. 
-Slår vi dem op, viser det sig at der er varmerøret frem og retur til bygningen, som er markeret i billede for neden, der står åbent. Idet, vi i en hydraulisk beregning ikke må have åbne ender, i et vandbaseret varmesystem, får vi en vioalation.
-For at kunne korrigerer denne fejl, kan vi tilføje en cap på enden af røret for at forsegle det. Gør vi dette, og køre valideringsmodellen igen, vil antallet af violations i oversigten gå fra 2 til 0. 
+Users can return to the BIM model in Revit and locate instances causing violations using their UniqueID numbers. Upon examination, it's found that the heating pipes leading to and from the building, depicted in the image below, are open-ended. Since open ends in a water-based heating system are not permissible in hydraulic calculations, this results in a violation. To rectify this error, caps can be added to the pipe ends to seal them. Correcting this, and rerunning the validation model, reduces the number of violations from 2 to 0.
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture0.png)
 
-Vi kan også klikke på rækken SpaceHeater i oversigtstabellen for at få en detaljeret beskrivelse af hvilke fso:SpaceHeater instancer der violater og hvorfor de violater. Den detaljerede tabel er vist herunder:
-
+We can also click on the "SpaceHeater" row in the overview table to access a detailed description of which fso:SpaceHeater instances are violating and the reasons for these violations. The detailed table provides an in-depth view of each specific violation, enabling a thorough understanding of violations related to spaceheater components in the BIM model.
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture12.PNG)
 
-Ud fra violation beskrivelsen kan vi konstaterer at de specifikke instancer af typen fso:SpaceHeater ikke har propertien transfers heat to -  med andre ord det servicere ikke et rum. 
-Vi har så mulighed for at gå ind i BIM modellen og lokaliserer disse 3 spaceheaters og korrigerer dem manuelt. Vi kan Åbne BIM modellen og anvende Revit Lookup til slå komponentet op i Revits database.
-Først indtaster vi ID'et af et af komponenterne ind i Revit Lookup, som vist herunder:
-
+Reading the detailed violation table reveals that certain fso:SpaceHeater instances lack the "transfers heat to" property, meaning they do not service a room. To rectify this, we can manually locate and correct these specific space heaters within the BIM model. Utilizing Revit Lookup, users can find these components in Revit's database by entering their IDs.
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/16.JPG)
 
-Ethvert Revit object har både en UniqueID (den som vi bruger) og ID. De bruges til forskellige formål. Vi skal bruge ID til at lokaliserer komponentets placering i 3D modellen, derfor finder vi denne igennem Revit Lookup, kopierer det og indsætter der i værktøjet Select By ID, som ligger under Ribbon Manage.
-Dette er vist herunder. 
+Every Revit object has both a UniqueID, which we use, and an ID, serving different purposes. The ID is essential for locating a component's position in the 3D model. This identification is achieved through Revit Lookup. Once the ID is found, it is copied and pasted into the "Select By ID" tool under the "Manage" Ribbon. This process is crucial for precise localization and modification of specific components within the BIM model, aligning with the tool's strategy for manual correction.
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/17.JPG)
 
