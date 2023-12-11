@@ -1,8 +1,20 @@
 # Semantic HVAC Tool Documentation (Will be ready by Tuesday, 12th of December)
-The Semantic HVAC Tool is a microservice-oriented web application, designed at the Technical University of Denmark's Department of Mechanical Engineering to perform compliance checking using Semantic Web technologies. It features a four-layer architecture consisting of 5 services. 
+The Semantic HVAC Tool Documentation provides a comprehensive guide for setting up and utilizing the tool. It introduces the tool's microservice-oriented architecture and details the setup process for each service. The documentation includes user flows for applying the tool in real-world and conceptual building models, highlighting its versatility in compliance checking with different BIM platforms. This guide is essential for understanding the tool's functionalities and effectively using it in various scenarios.
+
+
+
+The Semantic HVAC Tool Documentation, provides a detailed guide for setting up and running the tool in various scenarios. It introduces the tool's architecture, consisting of five microservice-oriented layers, designed at the Technical University of Denmark.
+
+It begins with setup instructions, ensuring users can install and operate the tool efficiently. 
+This section is followed by the "Userflow of the Semantic Web Tool on a Conceptual Building Model," featuring a demonstration from the IBPSA BuildSim Nordic 2022 conference. This part showcases the tool's integration with LD-BIM, contrasting with the Revit-based approach in the previous section and highlighting the tool's versatility in handling different BIM platforms.
+Next, it covers the "Userflow of the Semantic Web Tool on a Real-World Building Model," derived from research for the journal paper "Efficient Management and Compliance Check of HVAC Information in the Building Design Phase Using Semantic Web Technologies."
+
+
 
 
 ## Core Components and Their Functions
+The Semantic HVAC Tool is a microservice-oriented web application, designed at the Technical University of Denmark's Department of Mechanical Engineering to perform compliance checking using Semantic Web technologies. 
+The tool features a four-layer architecture consisting of 5 services. 
 
 ### Presentation Layer
 This layer employs a Graphical User Interface (GUI), developed using React, to offer an intuitive experience. Users can initiate tasks like conformance checking, hydraulic calculations, and view detailed results of these operations.
@@ -104,7 +116,9 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
   5. Access the UI at `localhost:3000/validationOverviewTable`.
  
 ## Userflow of the Semantic Web Tool on a real-world building model 
-The initial step in the user flow involves parsing Building Information Modeling (BIM) data into a triplestore using Apache Jena Fuseki, facilitated by FSO, FPO, and BOT ontologies. This process starts by downloading the BIM model from the following GitHub link: [BIM Model](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt), and opening it in Revit. In Revit's UI, there's a Ribbon tab labeled "RDF" containing a tool named "BOT." By clicking on this tool, the parser is executed, transferring FSO, FPO, and BOT instances into the database. The accompanying image illustrates the full BIM model, including the building and HVAC components, made partially transparent for clearer visibility of the HVAC elements. This depiction highlights the complexity of an HVAC model within real-world BIM models.
+This section showcases the practical application of the Semantic HVAC Tool, as explored in the journal paper "Efficient Management and Compliance Check of HVAC Information in the Building Design Phase Using Semantic Web Technologies," currently under review at the Semantic Web Journal. It involves a detailed sequence of steps, from downloading and opening the BIM model in Revit to performing multifaceted validation checks to pinpoint and rectify HVAC-related violations within the BIM model.
+
+The initial step in the user flow involves parsing BIM data into a triplestore using Apache Jena Fuseki, facilitated by FSO, FPO, and BOT ontologies. This process starts by downloading the BIM model from the following GitHub link: [BIM Model](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt), and opening it in Revit. In Revit's UI, there's a Ribbon tab labeled "RDF" containing a tool named "BOT." By clicking on this tool, the parser is executed, transferring FSO, FPO, and BOT instances into the database. The accompanying image illustrates the full BIM model, including the building and HVAC components, made partially transparent for clearer visibility of the HVAC elements. This depiction highlights the complexity of an HVAC model within real-world BIM models.
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture1.png)
 
 To verify that all data has been correctly transferred to the triplestore, navigate to [localhost:3030](http://localhost:3030/dataset.html?tab=query&ds=/ny-db). Here, you can check that 369,044 triples have been successfully transferred. 
