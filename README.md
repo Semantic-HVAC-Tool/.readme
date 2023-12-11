@@ -157,8 +157,7 @@ Returning to the overview page (([localhost:3000/validationOverviewTable](http:/
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture10.PNG)
 
-Nu hvor anden tabel også giver 0 violations betyder det at vi er har alle de nødvendige data til at kunne designe kapaciteten for vores flow moving devices. Ved at klikke på design, ekseveres 3 queries "PumpPressureDrop.ttl", "FanPressureDrop.ttl" og "FlowMovingDeviceFlowRate.ttl". Disse kan findes under https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/Queries. Idet beregningen af den samlede pressure drop bereges forskelligt for vandbaserede systemer og luftbaserede systemer, har vi en query for hver - "PumpPressureDrop.ttl" og "FanPressureDrop.ttl". De første 2 queries bestemmer den samlede tryktab, hvorimod den sidste bestemmer den samlede flowrate for hvert flow moving device. 
-Efter 1.5 min, fås følgende tabel der viser kapaciteten for hver flow moving device.
+With zero violations now in the second table, we have the necessary data to design the capacity of our flow-moving devices. Clicking "Design" executes three queries: "PumpPressureDrop.ttl," "FanPressureDrop.ttl," and "FlowMovingDeviceFlowRate.ttl," (available at [this GitHub repository](https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/Queries)). These queries address the total pressure drop calculations for water-based and air-based systems separately. The first two queries determine the total pressure loss, while the last one calculates the total flow rate for each flow-moving device. The resulting table displays the capacity of each device after 1.5 minutes.
 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture11.PNG)
 
