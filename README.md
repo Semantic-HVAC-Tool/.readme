@@ -1,17 +1,6 @@
 # Semantic HVAC Tool Documentation (Will be ready by Tuesday, 12th of December)
 The Semantic HVAC Tool Documentation provides a comprehensive guide for setting up and utilizing the tool. It introduces the tool's microservice-oriented architecture and details the setup process for each service. The documentation includes user flows for applying the tool in real-world and conceptual building models, highlighting its versatility in compliance checking with different BIM platforms. This guide is essential for understanding the tool's functionalities and effectively using it in various scenarios.
 
-
-
-The Semantic HVAC Tool Documentation, provides a detailed guide for setting up and running the tool in various scenarios. It introduces the tool's architecture, consisting of five microservice-oriented layers, designed at the Technical University of Denmark.
-
-It begins with setup instructions, ensuring users can install and operate the tool efficiently. 
-This section is followed by the "Userflow of the Semantic Web Tool on a Conceptual Building Model," featuring a demonstration from the IBPSA BuildSim Nordic 2022 conference. This part showcases the tool's integration with LD-BIM, contrasting with the Revit-based approach in the previous section and highlighting the tool's versatility in handling different BIM platforms.
-Next, it covers the "Userflow of the Semantic Web Tool on a Real-World Building Model," derived from research for the journal paper "Efficient Management and Compliance Check of HVAC Information in the Building Design Phase Using Semantic Web Technologies."
-
-
-
-
 ## Core Components and Their Functions
 The Semantic HVAC Tool is a microservice-oriented web application, designed at the Technical University of Denmark's Department of Mechanical Engineering to perform compliance checking using Semantic Web technologies. 
 The tool features a four-layer architecture consisting of 5 services. 
