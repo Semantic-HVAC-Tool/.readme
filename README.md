@@ -107,10 +107,7 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
 
 
 ## Userflow of the Semantic Web Tool on a real-world building model 
-Når alle servicene kører, så er det første vi gør at parse BIM data til en triplestore (Apache Jena Fuseki) vha. FSO, FPO og BOT. 
-Det gør vi ved at downloade BIM modellen fra https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt og åbne den i Revit. 
-I toppen af UI'en er der en Ribbon. I denne er der en tab der hedder RDF og i denne tab er der en tool der hedder BOT. Ved at klikke på BOT eksvereres parseren og vi får parset FSO, FPO og BOT instancer over til databasen. 
-Billedet herunder, viser hele BIM modellen inklusiv bygningen (gjort lidt transperant for at kunne se HVAC objekterne tydeligere) og alle HVAC komponenterne. Det ses tydeligt hvor kompleks en HVAC model kan se ud for en bygning. 
+The initial step in the user flow involves parsing Building Information Modeling (BIM) data into a triplestore using Apache Jena Fuseki, facilitated by FSO, FPO, and BOT ontologies. This process starts by downloading the BIM model from the following GitHub link: [BIM Model](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt), and opening it in Revit. In Revit's UI, there's a Ribbon tab labeled "RDF" containing a tool named "BOT." By clicking on this tool, the parser is executed, transferring FSO, FPO, and BOT instances into the database. The accompanying image illustrates the full BIM model, including the building and HVAC components, made partially transparent for clearer visibility of the HVAC elements. This depiction highlights the complexity of an HVAC model within real-world BIM models.
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture1.png)
 
 
