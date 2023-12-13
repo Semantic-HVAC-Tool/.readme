@@ -104,33 +104,19 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
   4. Troubleshooting: If you encounter the error 0308010C:digital envelope, resolve it by setting an environment variable with git bash: `export NODE_OPTIONS=--openssl-legacy-provider`, then run `npm start` again.
   5. Access the UI at `localhost:3000/validationOverviewTable`.
 
-### Automatic Rule executation (Optional)
-This optional setup uses SHACL ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/pyShaclScript.py)) for data graph correction instead of the SPARQL query "autosize.ttl" (available at this GitHub repository). It's useful for those preferring SHACL over SPARQL for auto-correcting violations like the 14 instances of fso:Pipe exceeding 100 Pa/m pressure drop - mentioned in the journal paper "Efficient Management and Compliance Check of HVAC Information in the Building Design Phase Using Semantic Web Technologies," currently under review at the Semantic Web Journal, using SHACL rather than SPARQL. 
-
-- **Steps**:
-  1. Clone the repository containing the `pyShaclScript.py` script ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/pyShaclScript.py)).
-  2.  Create and activate the virtual environment:
-     - Windows: `python38 -m venv venv` and `venv\Scripts\activate`
-     - Linux/Mac: `python3.8 -m venv venv` and `source venv/bin/activate`
-  3. Install requirements: `pip install requests pyShacl rdflib`
-  4. Execute the script (`python pyShaclScript.py`) to upload data to the database. The script reads the data graph with calculated pressure drop. This data graph contains 14 instances of fso:Pipe that violates with the the rule model. Beside reading it, it applies a SHACL rule that corrects these violations and then transfers this data graph to the database.
-  6. Access the UI at `localhost:3000/validationOverviewTable` and click on the Hydraulic Calc. You should now get 0 violations. 
-
-It only showcases how SHACL can be utilized to automatically correct violations once occured. Currently the tool is utiziling the query "autosize.ttl" (avaiable at [this GitHub repository](https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/ManuallySolvingQueries)) to correct vionly relevant for that that don't want to use SPARQL to automatically correct violations, but instead wants to correct 
-
-Returning to the overview page (([localhost:3000/validationOverviewTable](http://localhost:3000/validationOverviewTable))), clicking "Solve all violations" under the second table and then re-running the "Hydraulic Calc" leads to zero violations in the table. This occurs because the "Solve all violations" action executes the SPARQL query "autossize.ttl." (avaiable at [this GitHub repository](https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/ManuallySolvingQueries))  This generic query, applicable to various projects, identifies and adjusts fso:Pipe instances exceeding 100 Pa/m in pressure drop. Re-calculating the hydraulic pressure drop for these components with their new sizes results in compliance, as the adjusted sizes no longer exceed the 100 Pa/m threshold.
-
-
 ## Userflow of the Semantic Web Tool on a real-world building model 
 This section showcases the practical application of the Semantic HVAC Tool, as explored in the journal paper "Efficient Management and Compliance Check of HVAC Information in the Building Design Phase Using Semantic Web Technologies," currently under review at the Semantic Web Journal. It involves a detailed sequence of steps, from downloading and opening the BIM model in Revit to performing multifaceted validation checks to pinpoint and rectify HVAC-related violations within the BIM model.
 
 The initial step in the user flow involves parsing BIM data into a triplestore using Apache Jena Fuseki, facilitated by FSO, FPO, and BOT ontologies. This process starts by downloading the BIM model from the following GitHub link: [BIM Model](https://github.com/Semantic-HVAC-Tool/Other/blob/main/BIM-Model.rvt), and opening it in Revit. In Revit's UI, there's a Ribbon tab labeled "RDF" containing a tool named "BOT." By clicking on this tool, the parser is executed, BIM data is converted into RDF format, encompassing FSO, FPO, and BOT instances, and subsequently transferring them into the database. The accompanying image illustrates the full BIM model, including the building and HVAC components, made partially transparent for clearer visibility of the HVAC elements. This depiction highlights the complexity of an HVAC model in real-world building projects.
+
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture1.png)
 
 To verify that all data has been correctly transferred to the triplestore, navigate to [localhost:3030](http://localhost:3030/dataset.html?tab=query&ds=/ny-db). Here, you can check that 369,044 triples have been successfully transferred. 
+
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture2.PNG)
 
 Once all triples are transferred, we can perform the first validation check at [localhost:3000/validationOverviewTable](http://localhost:3000/validationOverviewTable). The UI is intentionally minimalistic, focusing on practicality over aesthetics. The UI enables users to efficiently carry out critical functions like validation checks, overviewing violations, conducting hydraulic calculations, and designing the capacity of flow-moving devices utlizing Semantic Web technologies.
+
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture3.PNG)
 
 Clicking "Validate" in the Semantic HVAC Tool initiates the first validation check, producing an overview table that categorizes violations into HVAC component types. This table not only provides a total count of 372 violations but also details how many violations each specific HVAC component type has committed. This structured categorization is important to pinpoint areas within the BIM model that need attention.
@@ -146,9 +132,11 @@ We can return to the BIM model in Revit and locate instances causing violations 
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture0.png)
 
 We can also click on the "SpaceHeater" row in the overview table to access a detailed description of which fso:SpaceHeater instances are violating and the reasons for these violations. The detailed table provides an in-depth view of each specific violation, enabling a thorough understanding of violations related to spaceheater components in the BIM model.
+
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/picture12.PNG)
 
 Reading the detailed violation table reveals that certain fso:SpaceHeater instances lack the "transfers heat to" property, meaning they do not service a room. To rectify this, we can manually locate and correct these specific space heaters within the BIM model. Utilizing Revit Lookup, we can find these components in Revit's database by entering their IDs.
+
 ![Alt text](https://raw.githubusercontent.com/Semantic-HVAC-Tool/.readme/main/Real_World_Building_Model_pictures/16.JPG)
 
 Every Revit object has both a UniqueID, which we use, and an ID, serving different purposes. The ID is essential for locating a component's position in the 3D model. This identification is achieved through Revit Lookup. Once the ID is found, it is copied and pasted into the "Select By ID" tool under the "Manage" Ribbon. This process is crucial for precise localization and modification of specific components within the BIM model, aligning with the tool's strategy for manual correction.
