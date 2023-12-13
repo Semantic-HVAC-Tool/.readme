@@ -104,19 +104,17 @@ Underpinning the application, this layer uses a Jena Fuseki server to manage RDF
   4. Troubleshooting: If you encounter the error 0308010C:digital envelope, resolve it by setting an environment variable with git bash: `export NODE_OPTIONS=--openssl-legacy-provider`, then run `npm start` again.
   5. Access the UI at `localhost:3000/validationOverviewTable`.
 
-### Automatic Rule executation (Not mandatory)
-This setup is not mandatory to use. It is only for those who want to use SHACL to correct the data graph instead of SPARQL ("autosize.ttl" avaiable at [this GitHub repository](https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/ManuallySolvingQueries)). In the following subsections we will only use SHACL to identify vionlations and not to correct violations. The following steps explain how we can correct the 14 instances of fso:Pipe that exceed the 100 Pa/m threshold mentioned in the journal paper "Efficient Management and Compliance Check of HVAC Information in the Building Design Phase Using Semantic Web Technologies," currently under review at the Semantic Web Journal, using SHACL rather than SPARQL. 
+### Automatic Rule executation (Optional)
+This optional setup uses SHACL ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/pyShaclScript.py)) for data graph correction instead of the SPARQL query "autosize.ttl" (available at this GitHub repository). It's useful for those preferring SHACL over SPARQL for auto-correcting violations like the 14 instances of fso:Pipe exceeding 100 Pa/m pressure drop - mentioned in the journal paper "Efficient Management and Compliance Check of HVAC Information in the Building Design Phase Using Semantic Web Technologies," currently under review at the Semantic Web Journal, using SHACL rather than SPARQL. 
+
 - **Steps**:
-  1. Clone the repository containing the `postDataToTriplestore.py` script ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/postDataToTriplestore.py)).
+  1. Clone the repository containing the `pyShaclScript.py` script ([link](https://github.com/Semantic-HVAC-Tool/Other/blob/main/pyShaclScript.py)).
   2.  Create and activate the virtual environment:
      - Windows: `python38 -m venv venv` and `venv\Scripts\activate`
      - Linux/Mac: `python3.8 -m venv venv` and `source venv/bin/activate`
   3. Install requirements: `pip install requests pyShacl`
   4. Execute the script to upload data to the database. The script reads the data graph with calculated pressure drop. This data graph contains 14 instances of fso:Pipe that violates with the the rule model. Beside reading it, it applies a SHACL rule that corrects these violations and then transfers this data graph to the database.
   6. Access the UI at `localhost:3000/validationOverviewTable` and click on the Hydraulic Calc. You should now get 0 violations. 
-
-
-
 
 It only showcases how SHACL can be utilized to automatically correct violations once occured. Currently the tool is utiziling the query "autosize.ttl" (avaiable at [this GitHub repository](https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/ManuallySolvingQueries)) to correct vionly relevant for that that don't want to use SPARQL to automatically correct violations, but instead wants to correct 
 
