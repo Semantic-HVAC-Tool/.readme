@@ -1,4 +1,4 @@
-# Semantic HVAC Tool Documentation (Will be ready by Tuesday, 12th of December)
+# Semantic HVAC Tool Documentation
 The Semantic HVAC Tool Documentation provides a comprehensive guide for setting up and utilizing the tool. It introduces the tool's microservice-oriented architecture and details the setup process for each service. The documentation includes user flows for applying the tool in real-world and conceptual building models, highlighting its versatility in compliance checking with different BIM platforms. This guide is essential for understanding the tool's functionalities and effectively using it in various scenarios.
 
 ## Core Components and Their Functions
