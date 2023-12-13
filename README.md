@@ -112,8 +112,8 @@ This optional setup uses SHACL ([link](https://github.com/Semantic-HVAC-Tool/Oth
   2.  Create and activate the virtual environment:
      - Windows: `python38 -m venv venv` and `venv\Scripts\activate`
      - Linux/Mac: `python3.8 -m venv venv` and `source venv/bin/activate`
-  3. Install requirements: `pip install requests pyShacl`
-  4. Execute the script to upload data to the database. The script reads the data graph with calculated pressure drop. This data graph contains 14 instances of fso:Pipe that violates with the the rule model. Beside reading it, it applies a SHACL rule that corrects these violations and then transfers this data graph to the database.
+  3. Install requirements: `pip install requests pyShacl rdflib`
+  4. Execute the script (`python pyShaclScript.py`) to upload data to the database. The script reads the data graph with calculated pressure drop. This data graph contains 14 instances of fso:Pipe that violates with the the rule model. Beside reading it, it applies a SHACL rule that corrects these violations and then transfers this data graph to the database.
   6. Access the UI at `localhost:3000/validationOverviewTable` and click on the Hydraulic Calc. You should now get 0 violations. 
 
 It only showcases how SHACL can be utilized to automatically correct violations once occured. Currently the tool is utiziling the query "autosize.ttl" (avaiable at [this GitHub repository](https://github.com/Semantic-HVAC-Tool/Orchestrator-Service/tree/main/public/ManuallySolvingQueries)) to correct vionly relevant for that that don't want to use SPARQL to automatically correct violations, but instead wants to correct 
